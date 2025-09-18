@@ -1,0 +1,7 @@
+ class SalesReportService {
+  
+  void generateDailySalesReports(){
+    
+  }
+
+}
