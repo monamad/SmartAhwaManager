@@ -125,6 +125,111 @@ int invoiceIndex = binarySearch(
 
 This optimization ensures the application maintains high performance even as the business grows and processes hundreds or thousands of invoices.
 
+## 🏛️ **SOLID Principles Implementation**
+
+### **🔒 Single Responsibility Principle (SRP)**
+Every class has exactly one responsibility and reason to change:
+- **`Drink`**: Only handles drink-related data and behavior
+- **`Order`**: Only manages individual order information
+- **`Invoice`**: Only handles invoice structure and calculations
+- **`CacheStorage`**: Only responsible for data storage operations
+- **`AppRoutes`**: Only manages route constants and navigation paths
+
+### **🔓 Open/Closed Principle (OCP)**
+Classes are open for extension but closed for modification through composition:
+```dart
+// Order uses composition with Drink
+class Order {
+  final Drink drink;  // Composition over inheritance
+  final int quantity;
+}
+
+// Invoice uses composition with Order
+class Invoice {
+  final List<Order> orders;  // Can extend features without modifying Order
+}
+```
+
+### **🔄 Liskov Substitution Principle (LSP)**
+Implementations can be substituted for their abstractions:
+```dart
+// Any implementation of AppRepo can replace the abstract class
+abstract class AppRepo { /* interface */ }
+class AppRepoImpl implements AppRepo { /* concrete implementation */ }
+
+// GetIt can inject any valid implementation
+getIt.registerLazySingleton<AppRepo>(() => AppRepoImpl(...));
+```
+
+### **🎯 Interface Segregation Principle (ISP)**
+Interfaces are focused and provide only what clients need:
+```dart
+// InvoiceRepository provides only invoice-specific operations
+abstract class InvoiceRepo {
+  Future<void> createInvoice(Invoice invoice);
+  Future<List<Invoice>> getPendingInvoices();
+}
+// Separates concerns from general AppRepo
+```
+
+### **🔄 Dependency Inversion Principle (DIP)**
+High-level modules depend on abstractions, not concretions:
+```dart
+// Storage interface abstracts the implementation
+abstract class Storage {
+  void addPendingInvoice(Invoice invoice);
+  void clearStorage();
+}
+
+// CacheStorage implements the interface
+class CacheStorage implements Storage { /* implementation */ }
+
+// BackendServices depends on abstraction, not concrete class
+class BackendServices {
+  final Storage storage;  // Depends on interface, not CacheStorage directly
+}
+```
+
+## 🎨 **Object-Oriented Programming Benefits**
+
+### **🔄 Inheritance & Polymorphism**
+Leveraging Flutter and Dart's OOP capabilities:
+```dart
+
+// Polymorphic behavior through interfaces
+Storage storage = CacheStorage();  // Can be any Storage implementation
+BackendServices service = BackendServices(storage: storage);
+```
+
+### **🎭 Abstraction**
+Multiple abstraction layers ensure flexibility:
+- **Repository Pattern**: `AppRepo` and `InvoiceRepo` abstract data access
+- **Storage Interface**: `Storage` abstracts data persistence
+
+### **🏗️ Modularity**
+Feature-based separation of concerns:
+- **Feature Level**: Each feature (`add_invoice/`, `pending_invoice/`) is self-contained
+- **Layer Separation**: Business logic, UI, and data access are isolated
+- **Module Organization**: GetIt modules (`BackendModule`, `UiModule`) separate dependency concerns
+
+### **♻️ Reusability**
+Shared components across features:
+- **Repository Pattern**: `AppRepo` reused by multiple controllers and cubits
+- **Route Constants**: `AppRoutes` reused throughout navigation
+- **Data Models**: `Drink`, `Order`, `Invoice` reused across all features
+- **Backend Services**: Single `BackendServices` instance serves all features
+
+### **🔧 Maintainability**
+Clear architectural boundaries and dependencies:
+```dart
+// Clear dependency chain with single responsibilities
+CacheStorage → BackendServices → AppRepo → Controllers/Cubits
+```
+- **Predictable Structure**: Each layer has defined responsibilities
+- **Easy Testing**: Mock objects can be injected at any level
+- **Isolated Changes**: Modifications in one layer don't affect others
+- **Clear Relationships**: Dependency injection makes object relationships explicit
+
 ## 📱 Screenshots
 
 ### 🏠 Home Dashboard
