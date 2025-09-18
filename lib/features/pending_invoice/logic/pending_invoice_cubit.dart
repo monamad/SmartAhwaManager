@@ -30,7 +30,7 @@ class PendingInvoiceCubit extends Cubit<PendingInvoiceState> {
   void completeInvoice(Invoice invoice) {
     emit(PendingInvoiceLoading());
     try {
-      appRepo.backendServices.completeInvoice(invoice);
+      appRepo.completeInvoice(invoice);
       loadPendingInvoices(); // Reload the list
       emit(InvoiceCompleted(invoice));
     } catch (e) {

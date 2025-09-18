@@ -27,22 +27,43 @@ lib/
 ├── features/                 # Feature-based modules
 │   ├── add_invoice/         # Invoice creation feature
 │   │   ├── logic/           # Business logic (Cubit + States)
+│   │   ├── repo/            # Feature-specific repository
+│   │   │   ├── interfaces/  # Repository contracts
+│   │   │   └── implementations/ # Repository implementations
 │   │   └── view/            # UI components and widgets
+│   │       └── widgets/     # Feature-specific widgets
 │   ├── pending_invoice/     # Pending orders management
+│   │   ├── logic/           # Business logic (Cubit + States)
+│   │   └── view/            # UI components
 │   ├── served_invoices/     # Completed orders history
+│   │   ├── logic/           # Business logic (Cubit + States)
+│   │   └── view/            # UI components
 │   ├── popular_drinks/      # Drink analytics
+│   │   ├── logic/           # Business logic (Cubit + States)
+│   │   └── view/            # UI components
 │   ├── day_report/         # Business reporting
+│   │   ├── logic/           # Business logic (Cubit + States)
+│   │   └── view/            # UI components
 │   └── home/               # Main dashboard
+│       ├── logic/           # Business logic (Controllers)
+│       └── view/            # UI components
 ├── data/                    # Data layer
 │   ├── models/             # Data models (Invoice, Order, Drink)
 │   └── services/           # Data services
 ├── backend/                # Business logic layer
 │   ├── backend_services.dart
 │   ├── cache_storage.dart
+│   ├── interfaces/         # Backend interfaces
 │   └── menu/              # Drink catalog
 ├── repo/                   # Repository pattern
 ├── di/                     # Dependency injection
-└── constants/              # App constants and routing
+│   ├── service_locator.dart # Main service locator setup
+│   └── modules/            # DI modules
+│       ├── backend_module.dart # Backend services registration
+│       └── ui_module.dart     # UI components registration
+└── routing/                # App routing and navigation
+    ├── route_generator.dart
+    └── routes.dart
 ```
 
 ### 🔧 State Management
@@ -107,6 +128,28 @@ DayReportCubit       → Comprehensive business reports
 - **Form Management**: Reactive forms with validation
 - **Navigation**: Route-based navigation with proper cubit provision
 - **Memory Management**: Automatic cubit lifecycle management
+- **Performance Optimization**: Binary search algorithms for efficient data operations
+
+### ⚡ Performance Optimizations
+
+#### Binary Search Implementation
+The application leverages **binary search algorithms** from Dart's `dart:collection` library to optimize critical operations:
+
+```dart
+// Efficient invoice lookup during completion
+int invoiceIndex = binarySearch(
+  storage.pendingInvoices.map((e) => e.id).toList(),
+  invoice.id,
+);
+```
+
+**Performance Benefits:**
+- **O(log n) Search Complexity**: Instead of linear O(n) search through pending invoices
+- **Scalable Performance**: Maintains fast response times even with large numbers of invoices
+- **Memory Efficient**: Uses sorted ID arrays for quick lookups
+- **Real-time Operations**: Enables instant invoice status updates without performance degradation
+
+This optimization ensures the application maintains high performance even as the business grows and processes hundreds or thousands of invoices.
 
 ## 📱 Screenshots
 

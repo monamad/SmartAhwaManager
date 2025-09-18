@@ -1,16 +1,16 @@
 import 'package:ass1/backend/menu/current_drinks.dart';
 import 'package:ass1/data/models/drink.dart';
 import 'package:ass1/data/models/order.dart';
-import 'package:ass1/repo/app_repo.dart';
+import 'package:ass1/features/add_invoice/repo/interfaces/invoice_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'add_invoice_state.dart';
 
 class AddInvoiceCubit extends Cubit<AddInvoiceState> {
-  final AppRepo appRepo;
+  final InvoiceRepo invoiceRepo;
 
-  AddInvoiceCubit(this.appRepo) : super(AddInvoiceInitial());
+  AddInvoiceCubit(this.invoiceRepo) : super(AddInvoiceInitial());
 
   // Form controllers
   final TextEditingController customerNameController = TextEditingController();
@@ -44,7 +44,7 @@ class AddInvoiceCubit extends Cubit<AddInvoiceState> {
       return;
     }
 
-    final order = appRepo.createOrder(
+    final order = invoiceRepo.createOrder(
       _selectedDrink!,
       int.parse(quantityController.text),
     );
@@ -73,7 +73,7 @@ class AddInvoiceCubit extends Cubit<AddInvoiceState> {
       return;
     }
 
-    appRepo.addInvoice({
+    invoiceRepo.addInvoice({
       'customerName': customerNameController.text.trim(),
       'orders': List<Order>.from(_orders), // Create a copy of the orders list
       'specialInstructions': specialInstructionsController.text.trim(),

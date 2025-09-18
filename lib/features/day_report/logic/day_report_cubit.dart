@@ -15,8 +15,8 @@ class DayReportCubit extends Cubit<DayReportState> {
     emit(DayReportLoading());
     try {
       final reportData = DayReportData(
-        totalIncome: appRepo.backendServices.totalIncome(),
-        totalInvoicesServed: appRepo.backendServices.totalInvoicesServed(),
+        totalIncome: appRepo.totalIncome(),
+        totalInvoicesServed: appRepo.totalInvoicesServed(),
         pendingInvoicesCount: appRepo.pendingInvoices.length,
         servedInvoicesCount: appRepo.servedInvoices.length,
         popularDrinks: appRepo.getPopularDrinks(),
@@ -34,8 +34,8 @@ class DayReportCubit extends Cubit<DayReportState> {
   }
 
   // Individual getters for specific data
-  double get totalIncome => appRepo.backendServices.totalIncome();
-  int get totalInvoicesServed => appRepo.backendServices.totalInvoicesServed();
+  double get totalIncome => appRepo.totalIncome();
+  int get totalInvoicesServed => appRepo.totalInvoicesServed();
   int get pendingInvoicesCount => appRepo.pendingInvoices.length;
   int get servedInvoicesCount => appRepo.servedInvoices.length;
   LinkedHashMap<Drink, int> get popularDrinks => appRepo.getPopularDrinks();

@@ -1,5 +1,5 @@
-import 'package:ass1/constants/route_generator.dart';
-import 'package:ass1/constants/routes.dart';
+import 'package:ass1/routing/route_generator.dart';
+import 'package:ass1/routing/routes.dart';
 import 'package:ass1/di/service_locator.dart';
 import 'package:flutter/material.dart';
 

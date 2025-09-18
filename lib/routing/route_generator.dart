@@ -1,3 +1,4 @@
+import 'package:ass1/features/add_invoice/repo/interfaces/invoice_repository.dart';
 import 'package:ass1/features/day_report/view/day_report_view.dart';
 import 'package:ass1/features/day_report/logic/day_report_cubit.dart';
 import 'package:ass1/features/pending_invoice/view/pending_invoice_view.dart';
@@ -9,7 +10,7 @@ import 'package:ass1/features/served_invoices/logic/served_invoices_cubit.dart';
 import 'package:ass1/features/add_invoice/logic/add_invoice_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ass1/constants/routes.dart';
+import 'package:ass1/routing/routes.dart';
 import 'package:ass1/features/home/view/home_view.dart';
 import 'package:ass1/features/add_invoice/view/add_orders_view.dart';
 import 'package:ass1/features/home/logic/home_controller.dart';
@@ -29,7 +30,7 @@ class RouteGenerator {
       case AppRoutes.addOrders:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => AddInvoiceCubit(appRepo),
+            create: (context) => AddInvoiceCubit(getIt<InvoiceRepo>()),
             child: const AddInvoiceView(),
           ),
         );
