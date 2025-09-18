@@ -382,5 +382,7 @@ For questions, suggestions, or collaboration opportunities:
 
 ---
 
+## App needs to be tested
+
 **Built with ❤️ using Flutter**
 
