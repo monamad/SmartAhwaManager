@@ -6,10 +6,8 @@ A modern Flutter application for managing drink orders, invoices, and business a
 
 ### 🏠 Core Functionality
 - **Invoice Creation**: Create and manage customer invoices with multiple drink orders
-- **Order Management**: Add, remove, and modify drink orders within invoices
 - **Invoice Tracking**: Track pending and completed invoices
 - **Business Analytics**: View popular drinks and daily reports
-- **Real-time Updates**: Live updates across all screens
 
 ### 🎯 Key Screens
 - **Home Dashboard**: Central navigation and quick stats
@@ -66,31 +64,7 @@ lib/
     └── routes.dart
 ```
 
-### 🔧 State Management
-- **Pattern**: BLoC (Business Logic Component)
-- **Implementation**: Individual feature-specific cubits
-- **Benefits**: 
-  - Memory efficient (cubits created only when needed)
-  - Automatic disposal on navigation
-  - Clean separation of concerns
-  - Easy testing and maintenance
 
-## 🎨 UI/UX Features
-
-### Modern Material Design
-- Clean, intuitive interface
-- Responsive layouts
-- Loading states and error handling
-- Pull-to-refresh functionality
-- Empty state illustrations
-- Success/error notifications
-
-### Enhanced User Experience
-- Form validation with helpful error messages
-- Real-time order calculations
-- Smooth navigation between screens
-- Consistent color scheme and typography
-- Card-based layouts for better readability
 
 ## 📊 Business Intelligence
 
@@ -154,39 +128,38 @@ This optimization ensures the application maintains high performance even as the
 ## 📱 Screenshots
 
 ### 🏠 Home Dashboard
-> *Add screenshot of the main dashboard showing navigation options*
 
-![Home Dashboard](screenshots/home_dashboard.png)
 
-### ➕ Add Invoice
-> *Add screenshot of the invoice creation screen with form fields*
+<img src="screenshots/home_dashboard.png" alt="Home Dashboard" width="200"/>
 
-![Add Invoice](screenshots/add_invoice.png)
+
+
+<img src="screenshots/add_invoice.png" alt="Add Invoice" width="200"/>
 
 ### ⏳ Pending Orders
-> *Add screenshot showing list of pending invoices*
 
-![Pending Orders](screenshots/pending_orders.png)
+
+<img src="screenshots/pending_orders.png" alt="Pending Orders" width="200"/>
 
 ### ✅ Served Orders
-> *Add screenshot of completed orders history*
 
-![Served Orders](screenshots/served_orders.png)
+
+<img src="screenshots/served_orders.png" alt="Served Orders" width="200"/>
 
 ### 📊 Popular Drinks
-> *Add screenshot showing popular drinks analytics*
 
-![Popular Drinks](screenshots/popular_drinks.png)
+
+<img src="screenshots/popular_drinks.png" alt="Popular Drinks" width="200"/>
 
 ### 📈 Daily Reports
-> *Add screenshot of the comprehensive business report*
 
-![Daily Reports](screenshots/daily_reports.png)
+
+<img src="screenshots/daily_reports.png" alt="Daily Reports" width="200"/>
 
 ### 📱 Order Management
-> *Add screenshot showing the order creation and management interface*
 
-![Order Management](screenshots/order_management.png)
+
+<img src="screenshots/order_management.png" alt="Order Management" width="200"/>
 
 ## 🚀 Getting Started
 
@@ -216,26 +189,8 @@ This optimization ensures the application maintains high performance even as the
 ### Project Setup
 The app uses dependency injection for services. All necessary services are automatically configured through the service locator pattern.
 
-## 🧪 Testing
 
-### Test Structure
-```
-test/
-├── unit/                   # Unit tests for business logic
-│   ├── cubits/            # Cubit tests
-│   └── repositories/      # Repository tests
-├── widget/                # Widget tests
-└── integration/           # Integration tests
-```
 
-### Running Tests
-```bash
-# Run all tests
-flutter test
-
-# Run with coverage
-flutter test --coverage
-```
 
 ## 📦 Dependencies
 
@@ -243,10 +198,6 @@ flutter test --coverage
 - `flutter_bloc`: State management
 - `get_it`: Dependency injection
 - `equatable`: Value equality
-
-### UI Dependencies
-- `material_design`: Material Design components
-- `flutter/cupertino`: iOS-style components
 
 ## 🔄 Development Workflow
 
@@ -316,36 +267,15 @@ flutter test --coverage
 - [ ] **Performance Optimization**: App performance monitoring
 - [ ] **Code Documentation**: Comprehensive code documentation
 
-## 👥 Contributing
 
-We welcome contributions! Please follow these guidelines:
-
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes with proper tests
-4. **Follow** the existing code style and architecture
-5. **Submit** a pull request with detailed description
-
-### Development Guidelines
-- Follow the existing architecture patterns
-- Write tests for new features
-- Update documentation for significant changes
-- Use meaningful commit messages
-- Ensure code follows Flutter/Dart style guidelines
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
 For questions, suggestions, or collaboration opportunities:
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- **Email**: m011415145@gmail.com
+- **LinkedIn**: [Your LinkedIn Profile]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/mohamad-hussien-61615737a/))
 
 ---
 
 **Built with ❤️ using Flutter**
 
-> This project demonstrates modern Flutter development practices with clean architecture, proper state management, and user-centric design principles.
