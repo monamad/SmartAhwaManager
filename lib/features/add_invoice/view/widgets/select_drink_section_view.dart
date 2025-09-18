@@ -11,7 +11,7 @@ class SelectDrinkSection extends StatelessWidget {
     return Column(
       children: [
         DropdownButtonFormField<Drink>(
-          value: CurrentDrinks.drinks[27],
+          initialValue: CurrentDrinks.drinks[27],
           decoration: const InputDecoration(labelText: 'Select Drink'),
           items: CurrentDrinks.drinks
               .map(

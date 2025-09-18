@@ -1,4 +1,4 @@
-import 'package:ass1/logic/cubit/app_cubit.dart';
+import 'package:ass1/features/add_invoice/logic/add_invoice_cubit.dart';
 import 'package:ass1/features/add_invoice/view/widgets/select_drink_section_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,30 +11,21 @@ class AddNewDrinkView extends StatelessWidget {
     return Column(
       children: [
         Form(
-          key: context.read<AppCubit>().formKey,
+          key: context.read<AddInvoiceCubit>().formKey,
           child: Column(
             children: [
-              TextFormField(
-                controller: context.read<AppCubit>().customerNameController,
-                decoration: const InputDecoration(labelText: 'Customer Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Write Customer Name';
-                  }
-                  return null;
-                },
-              ),
+             
               const SizedBox(height: 8),
               SelectDrinkSection(
                 onChanged: (drink) {
-                  context.read<AppCubit>().selectedDrink = drink;
+                  context.read<AddInvoiceCubit>().selectedDrink = drink;
                 },
               ),
               const SizedBox(height: 8),
 
               const SizedBox(height: 16),
               TextFormField(
-                controller: context.read<AppCubit>().quantityController,
+                controller: context.read<AddInvoiceCubit>().quantityController,
                 decoration: const InputDecoration(labelText: 'quantity'),
                 validator: (value) {
                   return null;
@@ -46,10 +37,13 @@ class AddNewDrinkView extends StatelessWidget {
 
         ElevatedButton(
           onPressed: () {
-            final formState = context.read<AppCubit>().formKey.currentState;
+            final formState = context
+                .read<AddInvoiceCubit>()
+                .formKey
+                .currentState;
             if (formState != null && formState.validate()) {
               print('Form is valid');
-              context.read<AppCubit>().createOrder();
+              context.read<AddInvoiceCubit>().createOrder();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Order created successfully')),
               );

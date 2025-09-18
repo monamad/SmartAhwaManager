@@ -1,4 +1,4 @@
-import 'package:ass1/logic/cubit/app_cubit.dart';
+import 'package:ass1/features/add_invoice/logic/add_invoice_cubit.dart';
 import 'package:ass1/features/add_invoice/view/widgets/add_new_drink_view.dart';
 import 'package:ass1/features/add_invoice/view/widgets/placed_orders_section_view.dart';
 import 'package:flutter/material.dart';
@@ -18,31 +18,48 @@ class AddInvoiceView extends StatelessWidget {
           child: Column(
             children: [
               AddNewDrinkView(),
+
+              BlocBuilder<AddInvoiceCubit, AddInvoiceState>(
+                builder: (context, state) {
+                  return PlacedOrdersSection();
+                },
+              ),
               TextFormField(
                 controller: context
-                    .read<AppCubit>()
+                    .read<AddInvoiceCubit>()
+                    .customerNameController,
+                decoration: const InputDecoration(labelText: 'Customer Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Write Customer Name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: context
+                    .read<AddInvoiceCubit>()
                     .specialInstructionsController,
                 decoration: const InputDecoration(
                   labelText: 'Special Instructions',
                 ),
               ),
-
-              BlocBuilder<AppCubit, AppState>(
-                builder: (context, state) {
-                  return PlacedOrdersSection();
-                },
-              ),
               ElevatedButton(
                 onPressed: () {
-                  if (context.read<AppCubit>().orders.isEmpty) {
+                  if (context.read<AddInvoiceCubit>().orders.isEmpty ||
+                      context
+                          .read<AddInvoiceCubit>()
+                          .customerNameController
+                          .text
+                          .isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Please add at least one order'),
+                        content: Text('Please add at least one order and customer name'),
                       ),
                     );
                     return;
                   }
-                  context.read<AppCubit>().submitInvoice();
+                  context.read<AddInvoiceCubit>().submitInvoice();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Invoice submitted')),
                   );
