@@ -237,9 +237,12 @@ CacheStorage → BackendServices → AppRepo → Controllers/Cubits
 
 <img src="screenshots/home_dashboard.png" alt="Home Dashboard" width="200"/>
 
-
+### ⏳ Add Orders
 
 <img src="screenshots/add_invoice.png" alt="Add Invoice" width="200"/>
+
+<img src="screenshots/placed_Orders.png" alt="Add Invoice" width="200"/>
+
 
 ### ⏳ Pending Orders
 
